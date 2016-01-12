@@ -18,6 +18,7 @@
       <div class="container">
 
         <h1>RiceAndCurry's ToDos App</h1>
+        <h5>Authors: Caleb Hsu, Sigrunn Sky, Willie Payne, Brooke Robinson, Jesus Tovar, Sneha</h5>
 
         <h2>Tasks</h2>
         <ul class="collection" id="tasks">
@@ -31,10 +32,10 @@
         var ref = new Firebase('https://weekone.firebaseio.com/')
 
         // read data from the location todos/tasks, only once
-        ref.child('todo/tasks').once('value', function(snapshot){
+        ref.child('todos/tasks').once('value', function(snapshot){
           var tasks = snapshot.val()
           tasks.forEach(function(task){
-            $('#tasks').append('<li class="collection-item">' + task + '</li>')
+            $('#tasks').append( '<div class="col s12 m6">' + '<div class="card cyan darken-1">' + '<div class="card-content white-text">' + '<span class="card-title">' + task + '</span>' + '</div>' + '</div>' + '</div>')
           })
         })
       </script>

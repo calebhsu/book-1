@@ -1,6 +1,6 @@
 {
-  "firebase": "weekone",
-  "public": "public",
+  "firebase": "chsu-ucdd-2016",
+  "public": "build",
   "ignore": [
     "firebase.json",
     "**/.*",

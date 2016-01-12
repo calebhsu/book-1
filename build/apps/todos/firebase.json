@@ -1,5 +1,5 @@
 {
-  "firebase": "weekone",
+  "firebase": "chsu-weekone-individual",
   "public": "public",
   "ignore": [
     "firebase.json",
