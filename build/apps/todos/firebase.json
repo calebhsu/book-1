@@ -1,6 +1,6 @@
 {
-  "firebase": "ucdd2-book",
-  "public": "build",
+  "firebase": "weekone",
+  "public": "public",
   "ignore": [
     "firebase.json",
     "**/.*",

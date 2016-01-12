@@ -31,7 +31,8 @@
         var ref = new Firebase('https://weekone.firebaseio.com/')
 
         // read data from the location todos/tasks, only once
-        ref.child('todo/tasks').once('value', function(snapshot){
+        ref.child('todos/tasks').once('value', function(snapshot){
+          // .once() gets data once, whereas on( , ) works for realtime data
           var tasks = snapshot.val()
           tasks.forEach(function(task){
             $('#tasks').append('<li class="collection-item">' + task + '</li>')
