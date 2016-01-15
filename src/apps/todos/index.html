@@ -18,7 +18,7 @@
       <div class="container">
 
         <h1>RiceAndCurry's ToDos App</h1>
-        <h5>Authors: Caleb Hsu, Sigrunn Sky, Willie Payne, Brooke Robinson, Jesus Tovar, Sneha</h5>
+        <h5>Authors: Caleb Hsu, Sigrunn Sky, Willie Payne, Brooke Robinson, Jesus Tovar</h5>
 
         <h2>Tasks</h2>
         <ul class="collection" id="tasks">
@@ -32,10 +32,29 @@
         var ref = new Firebase('https://weekone.firebaseio.com/')
 
         // read data from the location todos/tasks, only once
-        ref.child('todos/tasks').once('value', function(snapshot){
-          var tasks = snapshot.val()
-          tasks.forEach(function(task){
-            $('#tasks').append( '<div class="col s12 m6">' + '<div class="card cyan darken-1">' + '<div class="card-content white-text">' + '<span class="card-title">' + task + '</span>' + '</div>' + '</div>' + '</div>')
+        ref.child('todos/tasks/').once('value', function(snapshot){
+          snapshot.forEach(function(task){
+            var key = task.key()
+            var deadline = task.child("deadline").val()
+            var priority = task.child("priority").val()
+            var type = task.child("type").val()
+
+            console.log(type)
+
+          //   <div class="col s12 m6">
+          // <div class="card blue-grey darken-1">
+          //   <div class="card-content white-text">
+          //     <span class="card-title">Card Title</span>
+          //     <p>I am a very simple card. I am good at containing small bits of information.
+          //     I am convenient because I require little markup to use effectively.</p>
+          //   </div>
+          //   <div class="card-action">
+          //     <a href="#">This is a link</a>
+          //     <a href="#">This is a link</a>
+          //   </div>
+          // </div>
+
+            $('#tasks').append( '<div class="col s12 m6">' + '<div class="card cyan darken-1">' + '<div class="card-content white-text">' + '<span class="card-title">' + key + '</span> <p> Deadline: ' + deadline + '<br > Priority: ' + priority + '<br > Type: ' + type + '</div>' + '</div>' + '</div>')
           })
         })
       </script>
