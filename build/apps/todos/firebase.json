@@ -1,9 +1,0 @@
-{
-  "firebase": "chsu-weekone-individual",
-  "public": "public",
-  "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**"
-  ]
-}
