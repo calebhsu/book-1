@@ -17,16 +17,22 @@
 
       <div class="container">
 
-        <h1>Tom Yeh</h1>
+        <h1>Caleb Hsu</h1>
 
-        <h2>Favorite Programming Languages</h2>
-        <ul class="collection">
-          <li class="collection-item">Javascript</li>
-          <li class="collection-item">Haskell</li>
+        <h3>Technical Skills</h3>
+        <h6><i>Languages</i></h6>
+        <ul class="collection" id="langs">
+        </ul>
+        <h6><i>Programs</i></h6>
+        <ul class="collection" id="progs">
         </ul>
 
-        <h2>Favorite Food</h2>
-        <ul class="collection" id="foods">
+        <h3>Professional Experience</h3>
+        <ul class="collection" id="prof">
+        </ul>
+
+        <h3>Extracurriculars</h3>
+        <ul class="collection" id="extra">
         </ul>
 
       </div>
@@ -34,13 +40,34 @@
       <script>
 
         // create a firebase reference to the root
-        var ref = new Firebase('https://hello-ucdd2.firebaseio.com/')
+        var ref = new Firebase('https://chsu-ucdd-2016.firebaseio.com/')
 
         // read data from the location bio/favorite_foods, only once
-        ref.child('bio/favorite_foods').once('value', function(snapshot){
-          var foods = snapshot.val()
-          foods.forEach(function(food){
-            $('#foods').append('<li class="collection-item">' + food + '</li>')
+        ref.child('bio').once('value', function(snapshot){
+          var languages = snapshot.child("lang").val()
+          var programs = snapshot.child("prog").val()
+          var professional = snapshot.child("prof")
+          var extrac = snapshot.child("extra")
+
+          languages.forEach(function(item){     
+              $('#langs').append('<li class="collection-item">' + item + '</li>')
+          })
+
+          programs.forEach(function(item){     
+              $('#progs').append('<li class="collection-item">' + item + '</li>')
+          })
+
+          professional.forEach(function(item){     
+            var dept = item.key()
+            var title = item.child("title").val()
+            var desc = item.child("desc").val()
+            $('#prof').append('<li class="collection-item"><b>' + dept + '</b><br >' + '<p> Title: ' + title + '<br > Description: ' + desc + '</p></li>')
+          })
+
+          extrac.forEach(function(item){   
+            var org = item.key()
+            var pos = item.val()
+            $('#extra').append('<li class="collection-item"><b>' + org + '</b>: ' + pos + '</p></li>')
           })
         })
       </script>
