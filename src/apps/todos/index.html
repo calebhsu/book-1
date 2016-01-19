@@ -16,9 +16,18 @@
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
       <div class="container">
+        <nav>
+          <div class="nav-wrapper cyan darken-3">
+            <a href="/apps/todos/index.html" class="brand-logo">RiceAndCurry ToDo App</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="high.html">High</a></li>
+              <li><a href="medium.html">Medium</a></li>
+              <li><a href="low.html">Low</a></li>
+            </ul>
+          </div>
+        </nav>
 
-        <h1>RiceAndCurry's ToDos App</h1>
-        <h5>Authors: Caleb Hsu, Sigrunn Sky, Willie Payne, Brooke Robinson, Jesus Tovar</h5>
+        <h6>Authors: Caleb Hsu, Sigrunn Sky, Willie Payne, Brooke Robinson, Jesus Tovar</h6>
 
         <h2>Tasks</h2>
         <ul class="collection" id="tasks">
@@ -32,7 +41,7 @@
         var ref = new Firebase('https://weekone.firebaseio.com/')
 
         // read data from the location todos/tasks, only once
-        ref.child('todos/tasks').once('value', function(snapshot){
+        ref.child('todos/tasks').on('value', function(snapshot){
           snapshot.forEach(function(task){
             var key = task.key()
             var deadline = task.child("deadline").val()
