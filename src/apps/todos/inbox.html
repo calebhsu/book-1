@@ -127,9 +127,14 @@
           // TODO: add logic to validate form data before pushing the
           // data to firebase, only push/set if the required fields are not empty
 
-          // TODO: study why push() and set() are both necessary
-          var newTaskRef = taskListRef.push()
-          newTaskRef.set(taskObject)
+          if (title == "" || priority == "" || type == "" || deadline == "" || assignedby == "") {
+             Materialize.toast('Sorry, you are missing a field.', 4000)
+          }
+          else {
+            Materialize.toast('Submitted!', 4000)
+            var newTaskRef = taskListRef.push()
+            newTaskRef.set(taskObject)
+          }
         })
 
         // IMPORTANT!! initialize materializecss select
