@@ -17,6 +17,18 @@
 
       <div class="container">
 
+        <nav>
+          <div class="nav-wrapper cyan darken-3">
+            <a href="/apps/todos/index.html" class="brand-logo">RiceAndCurry ToDo App</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="high.html">High</a></li>
+              <li><a href="medium.html">Medium</a></li>
+              <li><a href="low.html">Low</a></li>
+              <li class="active"><a href="inbox.html">Inbox</a></li>
+            </ul>
+          </div>
+        </nav>
+
         <h1> Adding a Task </h1>
 
         <div class="row">
@@ -30,15 +42,40 @@
           <div class="input-field col s12">
              <select id="priority">
                <option value="" disabled selected>Choose Priority</option>
-               <option value="1">High</option>
-               <option value="2">Medium</option>
-               <option value="3">Low</option>
+               <option value="high">High</option>
+               <option value="medium">Medium</option>
+               <option value="low">Low</option>
              </select>
              <label>Priority</label>
            </div>
         </div>
 
-        <!-- TODO: add more form controls for entering task data -->
+        <div class="row">
+          <div class="input-field col s12">
+             <select id="type">
+               <option value="" disabled selected>Choose Type</option>
+               <option value="chore">Chore</option>
+               <option value="school">School</option>
+               <option value="personal">Personal</option>
+               <option value ="other">Other</option>
+             </select>
+             <label>Type</label>
+           </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="GitHub ID" value="" id="assigned" type="text" class="validate">
+            <label for="assigned">Assigned By</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <label for="deadline">Due</label>
+            <input type="date" id="deadline" class="datepicker">
+          </div>
+        </div>
 
         <div class="row">
           <div class="input-field col s12">
@@ -48,24 +85,43 @@
       </div>
 
       <script>
+        $('.datepicker').pickadate({
+          selectMonths: true, // Creates a dropdown to control month
+          selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
 
-        var root = new Firebase('https://ucdd2-book.firebaseio.com/')
+        var root = new Firebase('https://weekone.firebaseio.com/')
         var taskListRef = root.child('todos/tasks')
 
         $('#submit').click(function(){
           console.log('the submit button is clicked')
 
+          // Retrieves fields from form inputs
           var title = $('#title').val()
           console.log('the title is', title)
 
           var priority = $('#priority').val()
           console.log('the priority is', priority)
 
-          // TODO: retrieve more fields from form inputs
+          var type = $('#type').val()
+          console.log('the type is', type)
 
-          // TODO: add more fields to taskObject
+          var deadline = $('#deadline').val()
+          console.log('the deadline is', deadline)
+
+          var assignedby = $('#assigned').val()
+          console.log('the submitter is', assignedby)
+
+          var completed = false
+
+          // Add more fields to taskObject
           var taskObject = {
-            title: title
+            title: title,
+            priority: priority,
+            type: type,
+            deadline: deadline,
+            assignedby: assignedby,
+            completed: completed,
           }
 
           // TODO: add logic to validate form data before pushing the

@@ -43,13 +43,15 @@
         ref.child('todos/tasks').on('value', function(snapshot){
     			$('#tasks').empty()
           snapshot.forEach(function(task){
-            var key = task.key()
+            var title = task.child("title").val()
             var deadline = task.child("deadline").val()
             var priority = task.child("priority").val()
             var type = task.child("type").val()
+            var assignedby = task.child("assignedby").val()
+            var complete = task.child("completed").val()
 
             if (priority == "medium") {
-            	$('#tasks').append( '<div class="col s12 m6">' + '<div class="card cyan darken-1">' + '<div class="card-content white-text">' + '<span class="card-title">' + key + '</span> <p> Deadline: ' + deadline + '<br > Priority: ' + priority + '<br > Type: ' + type + '</div>' + '</div>' + '</div>')
+            	$('#tasks').append( '<div class="col s12 m6">' + '<div class="card cyan darken-1">' + '<div class="card-content white-text">' + '<span class="card-title">' + title + '</span> <p> Deadline: ' + deadline + '<br > Priority: ' + priority + '<br > Type: ' + type + '<br > Assigned By: ' + assignedby + '<br >Complete: ' + complete + '</div>' + '</div>' + '</div>')
             }            
           })
         })
