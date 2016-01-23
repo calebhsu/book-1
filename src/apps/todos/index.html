@@ -15,26 +15,34 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
-      <div class="container">
-        <nav>
-          <div class="nav-wrapper cyan darken-3">
-            <a href="/apps/todos/index.html" class="brand-logo">RiceAndCurry ToDo App</a>
-            <ul class="right hide-on-med-and-down">
-              <li><a href="high.html">High</a></li>
-              <li><a href="medium.html">Medium</a></li>
-              <li><a href="low.html">Low</a></li>
-              <li><a href="inbox.html">Inbox</a></li>
-            </ul>
-          </div>
-        </nav>
+      <nav>
+        <div class="nav-wrapper cyan darken-4">
+          <a href="/apps/todos/index.html" class="brand-logo">RiceAndCurry ToDo App</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="high.html">High</a></li>
+            <li><a href="medium.html">Medium</a></li>
+            <li><a href="low.html">Low</a></li>
+            <li><a href="inbox.html">Inbox</a></li>
+          </ul>
+        </div>
+      </nav>
 
-        <h6>Authors: Caleb Hsu, Sigrunn Sky, Willie Payne, Brooke Robinson, Jesus Tovar</h6>
+      <div class="container">
 
         <h2>Tasks</h2>
         <ul class="collection" id="tasks">
         </ul>
 
       </div>
+
+      <footer class="cyan darken-4 page-footer">
+        <div class="footer-copyright">
+          <div class="container">
+          Caleb Hsu, Sigrunn Sky, Willie Payne, Brooke Robinson, Jesus Tovar
+          <a class="grey-text text-lighten-4 right" href="https://github.com/calebhsu/book-1">GitHub</a>
+          </div>
+        </div>
+      </footer>
 
       <script>
         // create a firebase reference to the root
@@ -64,8 +72,8 @@
             else {
               var cardComplete = '<div class="card-action"><a class="btn white btn-flat disabled" id="completed">Completed ✓</a></div>'             
             }
-            
-            $('#tasks').append('<div class="col s12 m6">' + '<div class="card cyan darken-1">' + '<div class="card-content white-text">' + '<span class="card-title">' + title + '</span> <p> Deadline: ' + deadline + '<br > Priority: ' + priority + '<br > Type: ' + type + '<br > Assigned By: ' + assignedby + '<br >Complete: ' + completed + cardComplete + '</div>'+ '</div>' + '</div>')    
+
+            $('#tasks').append('<div class="col s12 m6">' + '<div class="card cyan darken-2">' + '<div class="card-content white-text">' + '<span class="card-title">' + title + '</span> <p> Deadline: ' + deadline + '<br > Priority: ' + priority + '<br > Type: ' + type + '<br > Assigned To: ' + assignedby + '<br >Complete: ' + completed + cardComplete + '</div>'+ '</div>' + '</div>')
           })
         })
       </script>

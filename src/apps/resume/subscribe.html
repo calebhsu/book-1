@@ -21,14 +21,14 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input value="" id="email" type="text" class="validate">
-            <label for="email">Email</label>
+            <input value="" id="email" type="email" class="validate">
+            <label for="email" data-error="Wrong." data-success="Correct!">Email</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <a class="waves-effect waves-light btn" id="submit">Submit</a>
+            <a class="light-green darken-2 waves-effect waves-light btn" id="submit">Submit</a>
           </div>
         </div>
 
@@ -41,17 +41,37 @@
 
       <script>
 
+        var root = new Firebase('https://chsu-ucdd-2016.firebaseio.com/')
+        var taskListRef = root.child('subs')
+
         $('#submit').click(function(){
           console.log('the submit button is clicked')
 
           // TODO: add code to submit an email address to your own Firebase
+          var email = $('#email').val()
+          console.log(email)
 
+          if ( email == "" ) {
+             Materialize.toast('Sorry, that doesn\'t look like an email', 4000)
+          }
+          else {
+            Materialize.toast('Subscribed!', 4000)
+            var newTaskRef = taskListRef.push()
+            newTaskRef.set(email)
+          }
         })
 
-
-        // TODO: add code to pull emaill addresses from your own Firebase,
+        // add code to pull emaill addresses from your own Firebase,
         // and populate "#emails" with these email addresses
 
+        var ref = new Firebase('https://chsu-ucdd-2016.firebaseio.com/')
+
+        ref.child('subs').on('value', function(snapshot){
+          $('#emails').empty()
+          snapshot.forEach(function(item){
+            $('#emails').append('<li class="collection-item">' + item.val() + '</li>')
+          })
+        })
 
       </script>
     </body>

@@ -15,19 +15,19 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
-      <div class="container">
+      <nav>
+        <div class="nav-wrapper cyan darken-3">
+          <a href="/apps/todos/index.html" class="brand-logo">RiceAndCurry ToDo App</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="high.html">High</a></li>
+            <li><a href="medium.html">Medium</a></li>
+            <li><a href="low.html">Low</a></li>
+            <li class="active"><a href="inbox.html">Inbox</a></li>
+          </ul>
+        </div>
+      </nav>
 
-        <nav>
-          <div class="nav-wrapper cyan darken-3">
-            <a href="/apps/todos/index.html" class="brand-logo">RiceAndCurry ToDo App</a>
-            <ul class="right hide-on-med-and-down">
-              <li><a href="high.html">High</a></li>
-              <li><a href="medium.html">Medium</a></li>
-              <li><a href="low.html">Low</a></li>
-              <li class="active"><a href="inbox.html">Inbox</a></li>
-            </ul>
-          </div>
-        </nav>
+      <div class="container">
 
         <h1> Adding a Task </h1>
 
@@ -98,20 +98,10 @@
 
           // Retrieves fields from form inputs
           var title = $('#title').val()
-          console.log('the title is', title)
-
           var priority = $('#priority').val()
-          console.log('the priority is', priority)
-
           var type = $('#type').val()
-          console.log('the type is', type)
-
           var deadline = $('#deadline').val()
-          console.log('the deadline is', deadline)
-
           var assignedby = $('#assigned').val()
-          console.log('the submitter is', assignedby)
-
           var completed = false
 
           // Add more fields to taskObject
@@ -124,7 +114,7 @@
             completed: completed,
           }
 
-          // TODO: add logic to validate form data before pushing the
+          // add logic to validate form data before pushing the
           // data to firebase, only push/set if the required fields are not empty
 
           if (title == "" || priority == "" || type == "" || deadline == "" || assignedby == "") {

@@ -15,9 +15,16 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
-      <div class="container">
+      <nav>
+        <div class="nav-wrapper light-green darken-2">
+          <a href="/apps/todos/index.html" class="brand-logo center">Caleb Hsu - Resume</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="subscribe.html">Subscribe</a></li>
+          </ul>
+        </div>
+      </nav>
 
-        <h1>Caleb Hsu</h1>
+      <div class="container">
 
         <h3>Technical Skills</h3>
         <h6><i>Languages</i></h6>
@@ -35,6 +42,11 @@
         <ul class="collection" id="extra">
         </ul>
 
+        <h3>Tasks</h3>
+        <ul class="collection" id="tasks">
+        </ul>
+
+
       </div>
 
       <script>
@@ -42,7 +54,7 @@
         // create a firebase reference to the root
         var ref = new Firebase('https://chsu-ucdd-2016.firebaseio.com/')
 
-        // read data from the location bio/favorite_foods, only once
+        // read data from the location bio only once
         ref.child('bio').once('value', function(snapshot){
           var languages = snapshot.child("lang").val()
           var programs = snapshot.child("prog").val()
@@ -68,6 +80,34 @@
             var org = item.key()
             var pos = item.val()
             $('#extra').append('<li class="collection-item"><b>' + org + '</b>: ' + pos + '</p></li>')
+          })
+
+        })
+
+        var ref2 = new Firebase('https://weekone.firebaseio.com/')
+
+        // read data from tasks
+        ref2.child('todos/tasks').on('value', function(snapshot){
+          $('#tasks').empty()
+          snapshot.forEach(function(task){
+            var key = task.key()
+            var title = task.child("title").val()
+            var deadline = task.child("deadline").val()
+            var priority = task.child("priority").val()
+            var type = task.child("type").val()
+            var assignedby = task.child("assignedby").val()
+            var completed = task.child("completed").val()
+
+            if (completed == false) {
+              var cardComplete = '<div class="card-action"><a onclick="mark(&quot;' + key + '&quot;)" class="btn waves-effect white btn-flat" id="completed">Complete</a></div>'
+            }
+            else {
+              var cardComplete = '<div class="card-action"><a class="btn white btn-flat disabled" id="completed">Completed ✓</a></div>'             
+            }
+
+            if (assignedby == "calebhsu") {
+              $('#tasks').append('<div class="col s12 m6">' + '<div class="card light-green darken-1">' + '<div class="card-content white-text">' + '<span class="card-title">' + title + '</span> <p> Deadline: ' + deadline + '<br > Priority: ' + priority + '<br > Type: ' + type + '<br > Assigned To: ' + assignedby + '<br >Complete: ' + completed + cardComplete + '</div>'+ '</div>' + '</div>')
+            }
           })
         })
       </script>
