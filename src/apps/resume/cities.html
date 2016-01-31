@@ -7,7 +7,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
       <!--Import stylesheet for Leaflet to work-->
-      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
       <link rel="stylesheet" href="/css/leaflet.label.css" />
 
       <!--Let browser know website is optimized for mobile-->
@@ -19,33 +19,71 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
-      <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
       <script src="/js/leaflet.label.js"></script>
+
+      <nav>
+        <div class="nav-wrapper light-green darken-2">
+          <ul class="left">
+            <li><a href="/">Home</a></li>
+          </ul>
+          <a href="/apps/resume/" class="brand-logo center">Caleb Hsu</a>
+          <ul class="right">
+            <li class="active"><a href="cities.html"><i class="large material-icons">location_on</i></a></li>
+            <li><a href="subscribe.html"><i class="large material-icons">email</i></a></li>
+          </ul>
+        </div>
+      </nav>
 
       <div class="container">
 
-        <h1>My Favoirte Cities</h1>
-        <div id="cities"></div>
-        <div id="map" style="height:500px"></div>
+        <h1>Favorite Cities</h1>
+        <div class="row" id="cities">
+        </div>
+        <div id="map" style="height:500px">
+          <canvas id="icon1" width="128" height="128"></canvas>
+        </div>
       </div>
 
       <script>
 
 // create a firebase reference to the root
-var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com/austin');
+var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com/');
 
 var data
 
 // read data from only once
-weatherRef.once('value', function(snapshot){
+weatherRef.on('value', function(snapshot){
   var city = snapshot.val()
-  mapCity(city)
-  displayCity(city, 'austin')
+
+  // Top 5 cities
+  var den = city['denver']
+  var nyc = city['newyork']
+  var okc = city['fortworth']
+  var sea = city['seattle']
+  var ind = city['indianapolis']
+
+  // Display
+  $('#cities').empty()
+  displayCity(city, 'denver')
+  displayCity(city, 'newyork')
+  displayCity(city, 'fortworth')
+  displayCity(city, 'seattle')  
+  displayCity(city, 'indianapolis')
+
+  // Map
+  markersLayerGroup.clearLayers()
+
+  mapCity(den, 'Denver')
+  mapCity(nyc, 'New York City')
+  mapCity(okc, 'Fort Worth')
+  mapCity(sea, 'Seattle')
+  mapCity(ind, 'Indianapolis')
 })
 
 var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
 
-// initialzie the map
+// initialize the map
 var map = L.map($('#map')[0]).setView([39.50, -98.35], 4)
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: attributionText,
@@ -60,25 +98,57 @@ var markersLayerGroup = L.layerGroup()
 markersLayerGroup.addTo(map)
 
 // visualize cities on the map
-function mapCity(city){
-  console.log('mapCity', city)
+function mapCity(city, name){
   var latlng = [city.latitude, city.longitude]
-  var circle = L.circle(latlng, 10, {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.5
-  }).bindLabel('Austin')
-  
-  markersLayerGroup.addLayer(circle)
+
+  var temp = city.currently.temperature
+  var cond = city.currently.summary
+
+  // handles weather-icons prefix
+  var tempMark = 'images/red.png'
+  var temp = city.currently.temperature
+  if (temp >= 80) { tempMark = 'images/red.png' }
+  else if (temp >= 60) { tempMark = 'images/orange.png' }
+  else if (temp >= 40) { tempMark = 'images/green.png' }
+  else if (temp >= 20) { tempMark = 'images/lightblue.png'}
+  else { tempMark = 'images/blue.png' }
+
+  var myIcon = L.icon({
+      iconUrl: tempMark,
+      iconSize: [40, 40],
+      iconAnchor: [21, 40],
+      popupAnchor: [-3, -76],
+  });
+
+  var marker = L.marker(latlng, {icon: myIcon} ).bindPopup('<b>' + name + '</b><br > ' + cond + ', ' + temp + '&deg; F').addTo(map);
+
+  markersLayerGroup.addLayer(marker)
 }
 
-function displayCity(city, name){
-  console.log('displayCity', city)
-  $('#cities').append('<li class="collection-item">' + name +
-    ' humidity = ' +
-    JSON.stringify(city.currently) + '</li>')
+function displayCity(city, name) {
+  var capName = name.charAt(0).toUpperCase() + name.substr(1, name.length)
+  if (capName == "Newyork") { capName = "New York City" }
+  if (capName == "Fortworth") { capName = "Fort Worth"}
+
+  var c = city[name].currently
+  var d = city[name].daily
+
+  // current data
+  var currentTemp = c.temperature
+  var currentSum = c.summary
+  var humidity = Math.round(c.humidity * 100)
+  var wind = Math.round(c.windSpeed)
+  var vis = Math.round(c.visibility)
+
+  // daily data
+  var high = d.data[0].apparentTemperatureMax
+  var low = d.data[0].apparentTemperatureMin
+  var sum = d.summary
+  var precip = d.data[0].precipProbability * 100
+
+  $('#cities').append('<div class="col s6"><div class="card small"><div class="card-image"><img class="responsive-img activator" src="images/' + name + '.jpg"><span class="card-title">' + capName + '</span></div>' + '<div class="card-content"><span class="card-title activator">' + currentSum + ', ' + currentTemp + '&deg; F' + '<i class="material-icons right">more_vert</i></span><p>' + '<b>High: </b>' + high + '&deg;, <b>Low: </b>' + low +'&deg;</p></div>' + '<div class="card-reveal"><span class="card-title grey-text text-darken-4">' + capName + '<i class="material-icons right">close</i></span><p>' + sum + '</p><p><b>Humidity: </b>' + humidity + '%<br ><b>Wind: </b>' + wind + ' mph<br ><b>Visibiliy: </b>' + vis + ' mi<br ><b>Probability of Precipitation: </b>' + precip + '%' + '</p></div></div></div>')
 }
 
-      </script>
-    </body>
-  </html>
+    </script>
+  </body>
+</html>
