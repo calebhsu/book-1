@@ -16,7 +16,8 @@
 
     <style>
     html {
-        background: url(sf2.jpg) no-repeat center center fixed; 
+        font-family: GillSans, Calibri, Trebuchet, sans-serif;
+        background: url(images/sf2.jpg) no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -32,21 +33,35 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
       <script src="leaflet.label.js"></script>
 
-
-      <nav class="nav-wrapper transparent">
-        <a href="/apps/parking/index.html" class="brand-logo center black-text">Team Asia</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="garages.html" class="black-text">Garages</a></li>
-          <li><a href="garages_map.html" class="black-text" >Map</a></li>
-        </ul>
-      </nav>
-      
+      <nav class="transparent">
+        <div class="nav-wrapper">
+          <ul class="left">
+              <li><a href="/" class="black-text">Home</a></li>
+            </ul>
+          <a href="/apps/parking/index.html" class="brand-logo center black-text">
+            <img class="responsive-img" id="logo" src="images/asia.png" alt="Team Asia logo." style="max-height: 55px; position: relative; transform: translateY(10%);"/>
+          </a>
+          <ul class="right">
+            <li><a href="garages.html" class="black-text"><i class="large material-icons">list</i></a></li>
+            <li class="active"><a href="garages_map.html" class="black-text"><i class="large material-icons">location_on</i></a></li>
+          </ul>
+        </div>
+      </nav> 
 
       <div class="container">
         <h1> </h1>
         <div id="map" style="height:500px"></div>
 
       </div>
+
+      <footer class="transparent page-footer">
+        <div class="footer-copyright">
+          <div class="container black-text">
+          Caleb Hsu, Bader AlShumimiry, Yen-Teh Liu, Varshini Jagannath, Kavya Ravikumar
+          <a class="right" href="https://github.com/calebhsu/book-1">GitHub</a>
+          </div>
+        </div>
+      </footer> 
 
       <script>
 
@@ -93,7 +108,7 @@ function drawGarages(garages){
     var points = garage.points
     var latlng = [points[0], points[1]]
     
-    var label = garage.friendlyName + "";
+    var label = '<b>' + garage.friendlyName + '</b>';
     var d = new Date();
     var currHour = parseInt(d.getHours());
 
@@ -130,12 +145,12 @@ function drawGarages(garages){
       }
 
       if ( (parseInt(begTime) <= parseInt(currHour)) && ( parseInt(currHour) < parseInt(endTime)) ) {
-        label+="<br>"+"Beginning Time: "+rate.BEG+"<br>"+"End Time: "+rate.END+"<br>"+"Rate: "+rate.RATE;
+        label += '<br><b>Opens</b>: ' + rate.BEG + '<br><b>Closes</b>: ' + rate.END + '<br>' + '<i>Rate: $' + rate.RATE + ' '  + rate.RQ.toLowerCase() + '</i>'
       }
     })
 
     var myIcon = L.icon({
-        iconUrl: 'marker.png',
+        iconUrl: 'images/marker.png',
         
         iconSize: [40, 40],
         iconAnchor: [22, 94],
@@ -144,17 +159,8 @@ function drawGarages(garages){
     });
     
     var marker = L.marker(latlng,{icon: myIcon}).addTo(map);
-
     marker.bindPopup(label); 
 
-    /*var circle = L.circle(latlng, 10, {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5
-    }).bindLabel(label)  */
-
-    // add the circle layer to the makers layer group
-    //L.marker({icon: locIcon}).addTo(map);
     markersLayerGroup.addLayer(marker)
 
   })
