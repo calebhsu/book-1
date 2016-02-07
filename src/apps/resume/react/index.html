@@ -6,31 +6,36 @@
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
 
     <script src="lib/react.js"></script>
     <script src="lib/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   </head>
+
   <body>
-    <div class="container">
-      <div id="navbar"></div>
-
-      <h2 id="about-heading">About Me</h2>
-      <div id="about"></div>
-
-      <h2 id="skills-heading">Skills</h2>
-      <div id="skills"></div>
+    <div id="navbar"></div>
+    <div class="container" style="margin-top: 2%">
+      <div class="row">
+        <div id="about" class="col s4"></div>
+        <div id="skills" class="col s8"></div>
+      </div>
 
       <h2 id="tasks-heading">Tasks</h2>
       <div id="tasks"></div>
 
       <h2 id="cities-heading">Favorite Cities</h2>
-      <div id="cities"></div>
+      <div class="row">
+        <div id="cities"></div>
+      </div>
     </div>
+
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+
     <script>
       // MyComponents is a global object where each property is a reference to a component class
       MyComponents = {}
@@ -39,7 +44,6 @@
     <!-- import each component class in components/ -->
 
     <script type="text/babel" src="components/navbar.js"></script>
-
     <script type="text/babel" src="components/about.js"></script>
     <script type="text/babel" src="components/task-list.js"></script>
     <script type="text/babel" src="components/city-list.js"></script>
@@ -58,30 +62,88 @@
         $('#about').get(0)
       );
 
-      // TODO: load tasks data from Firebase
-      var tasks = [{name: 'go to the movies'}, {name: 'sleep'}]
+      // load tasks data from Firebase
+      var taskref = new Firebase('https://weekone.firebaseio.com/')
 
-      ReactDOM.render(
-        <MyComponents.TaskList tasks={tasks}/>,
-        $('#tasks').get(0)
-      );
+      var tasks = []
+      taskref.child('todos/tasks').on('value', function(snapshot){
+        $('#tasks').empty()
+        snapshot.forEach(function(task){
+          var key = 'marked(' + task.key() + ')'
+          var title = task.child("title").val()
+          var deadline = task.child("deadline").val()
+          var priority = task.child("priority").val()
+          var type = task.child("type").val()
+          var assignedto = task.child("assignedby").val()
+          var completed = task.child("completed").val()
 
-      // TODO: load city weather data from Firebase
-      var cities = [{name: 'Austin'}, {name: 'New York'}]
+          if (assignedto == "calebhsu") {
+            tasks.push({key: key, title: title, deadline: deadline, priority: priority, type: type, assigned: assignedto, completed: completed})
+          }
+          ReactDOM.render(
+            <MyComponents.TaskList tasks={tasks}/>,
+            $('#tasks').get(0)
+          );
+        })
+      })
 
-      ReactDOM.render(
-        <MyComponents.CityList cities={cities}/>,
-        $('#cities').get(0)
-      );
 
+      // load city weather data from Firebase
+      var weatherref = new Firebase('https://publicdata-weather.firebaseio.com/');
 
-      // TODO: load skill data from Firebase
-      var skills = [{name: 'JavaScript', years: 5}, {name: 'Karate', years: 2}]
+      var fav = ['denver', 'newyork', 'fortworth', 'seattle', 'indianapolis']
+      var cities = []
+      weatherref.on('value', function(snapshot){
+        snapshot.forEach(function(city){
+          if (fav.indexOf(city.key()) > -1) {
+            // formatting name
+            var name = city.key()
+            var capName = name.charAt(0).toUpperCase() + name.substr(1, name.length)
+            if (capName == "Newyork") { capName = "New York City" }
+            if (capName == "Fortworth") { capName = "Fort Worth"}
 
-      ReactDOM.render(
-        <MyComponents.SkillList skills={skills}/>,
-        $('#skills').get(0)
-      );
+            var image = "/apps/resume/images/" + name + ".jpg"
+
+            // weather stuff
+            var data = city.val()
+            var c = data.currently
+            var d = data.daily
+
+            // current data
+            var currentTemp = c.temperature
+            var currentSum = c.summary
+
+            // daily data
+            var high = d.data[0].apparentTemperatureMax
+            var low = d.data[0].apparentTemperatureMin
+
+            cities.push({name: capName, current: currentTemp, summary: currentSum, high: high, low: low, image: image})  
+
+            ReactDOM.render(
+              <MyComponents.CityList cities={cities}/>,
+              $('#cities').get(0)
+            );
+          }
+        })
+      })
+
+      // load skill data from Firebase
+      var skillref = new Firebase('https://chsu-ucdd-2016.firebaseio.com/')
+      
+      var skills = []
+      skillref.child('bio/skills').once('value', function(snapshot) {
+         snapshot.forEach(function(skill){
+          var name = skill.key()
+          var years = skill.child('years').val()
+
+          skills.push({name: name, years: years})
+        })
+
+        ReactDOM.render(
+          <MyComponents.SkillList skills={skills}/>,
+          $('#skills').get(0)
+        );
+      })
 
     </script>
   </body>

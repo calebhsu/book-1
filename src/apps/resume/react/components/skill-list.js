@@ -1,16 +1,12 @@
 MyComponents.Skill = React.createClass({
-
   render: function() {
     return (
-      <div className="card">
-        <div className="card-content">
-        TODO: This is a component to display a skill.
-        Raw props data is {JSON.stringify(this.props.skill)}
-        </div>
-      </div>
+        <li className="collection-item">
+          <span className="title"> {this.props.skill.name}</span>
+          <p className="grey-text">{this.props.skill.years} years</p>
+        </li>
     );
   }
-
 });
 
 MyComponents.SkillList = React.createClass({
@@ -21,13 +17,10 @@ MyComponents.SkillList = React.createClass({
     })
 
     return (
-      <div className="card">
+      <div className="card light-green" style={{"opacity": "0.9"}}>
         <div className="card-content">
-        TODO: This is a component to display a list of skills I possess.
-        Raw props data is {JSON.stringify(this.props.skills)}
-
-        {skillElements}
-
+        <div className="card-title white-text">Skills</div>
+        <ul className="collection"> {skillElements} </ul>
         </div>
       </div>
     );
