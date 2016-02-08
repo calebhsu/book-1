@@ -34,6 +34,7 @@ node_modules
 .node_repl_history
 
 .build
+build
 .DS_Store
 
 build
