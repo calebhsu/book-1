@@ -13,6 +13,9 @@
   </head>
 
   <body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    
     <header>
       <nav>
         <div class="nav-wrapper orange darken-3">
@@ -59,29 +62,32 @@
         <div class="center">
           <p>Launching in San Francisco in Spring 2016, customers can find Asian restaurants and cooks based on rating, location, menu, style, and open hours. Restaurants can pay for listing positions, while customers only pay the price for food and delivery directly to the restaurant.</p>
           <h4>Frequently Asked Questions</h4>
-          <ul class="collapsible" data-collapsible="accordion">
+          <ul class="collapsible popout" data-collapsible="accordion">
             <li>
-              <div class="collapsible-header"><i class="material-icons">filter_drama</i>Who can join as service providers?</div>
-              <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              <div class="collapsible-header orange darken-2 white-text"><i class="material-icons">info_outline</i>What services do you provide?</div>
+              <div class="collapsible-body"><p>We recommend and match hungry customers to nearby Asian restaurants and cooks.</p></div>
             </li>
             <li>
-              <div class="collapsible-header"><i class="material-icons">place</i>What prices do customers pay for service?</div>
-              <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              <div class="collapsible-header orange darken-2 white-text"><i class="material-icons">perm_identity</i>Who can use the services?</div>
+              <div class="collapsible-body"><p>Hungry customers & businesses can order food through Hungry Asians.</p></div>
             </li>
             <li>
-              <div class="collapsible-header"><i class="material-icons">whatshot</i>How much can a service provider earn?</div>
-              <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              <div class="collapsible-header orange darken-2 white-text"><i class="material-icons">group_work</i>Who can join as service providers?</div>
+              <div class="collapsible-body"><p>Restaurants and home cooks can cook, deliver, and charge for meals.</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header orange darken-2 white-text"><i class="material-icons">credit_card</i>What prices do customers pay for service?</div>
+              <div class="collapsible-body"><p>Customers provide the upfront price for their order based on prices set by the restaurant.</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header orange darken-2 white-text"><i class="material-icons">store</i>How much can a service provider earn?</div>
+              <div class="collapsible-body"><p>The amount earned by a restaurant or home cook is solely determined by the prices they set, and the number of orders they receive.</p></div>
             </li>
           </ul>
         </div>
       </div>
     </main>
-  </body>
 
-  <script>
-   $(document).ready(function(){
-    $('.collapsible').collapsible({
-    });
-  });
-  </script>
+  </body>
 </html>
+
