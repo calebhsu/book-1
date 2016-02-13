@@ -9,8 +9,9 @@
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
-
+      <!--Import stylesheet for Leaflet to work-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+    <link rel="stylesheet" href="/css/leaflet.label.css" />
 
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
@@ -35,8 +36,14 @@
 
   </head>
   <body>
-    <div id="app-container" class="container">
-    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+    <script src="/js/leaflet.label.js"></script>
+
 
     <script>
       // MyComponents is a global object where each property is a reference to a component class
@@ -46,15 +53,27 @@
     <!-- import each component class in components/ -->
     <!-- The order is important. Dependencies must be loaded first -->
     <script type="text/babel" src="components/navbar.jsx"></script>
-    <script type="text/babel" src="components/team.jsx"></script>
     <script type="text/babel" src="components/map.jsx"></script>
+    <script type="text/babel" src="components/RestList.jsx"></script>
+
     <script type="text/babel" src="components/user.jsx"></script>
+    <script type="text/babel" src="components/rList.jsx"></script>
 
     <!-- Main app container -->
     <script type="text/babel" src="components/app.jsx"></script>
 
     <!-- Connect the app and data -->
     <script type="text/babel" src="data.jsx"></script>
+
+
+
+    <div id="nav-bar"> </div>
+
+     <div id="app-container" class="container">
+         <div id="mapview" style="height:500px"></div>
+
+     </div>
+
 
   </body>
 </html>

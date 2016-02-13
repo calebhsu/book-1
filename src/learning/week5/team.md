@@ -16,22 +16,22 @@ Friday @ 11:59pm, 2/12/2016
 
 ### App
 
-* [ ] The client page ([/apps/uber/client/](/apps/uber/client/)) should look as close to the mockup as possible.
-  * [ ] The [_MapView_](/apps/uber/client/components/map.jsx) component should be implemented.
-  * [ ] The [_NavBar_](/apps/uber/client/components/navbar.jsx) component should be implemented.
-  * [ ] The [_User_](/apps/uber/client/components/user.jsx) component should be implemented.  
-* [ ] The admin page ([/apps/uber/admin/](/apps/uber/admin/)) should look as close to the mockup as possible.
-  * [ ] The [_ProviderMap_](/apps/uber/admin/components/provider-map.jsx) component should be implemented.
-  * [ ] The [_ProviderList_](/apps/uber/admin/components/provider-list.jsx) component should be implemented.  
-  * [ ] The [_UserMap_](/apps/uber/admin/components/user-map.jsx) component should be implemented.      
-  * [ ] The [_UserList_](/apps/uber/admin/components/user-list.jsx) component should be implemented.
+* [x] The client page ([/apps/uber/client/](/apps/uber/client/)) should look as close to the mockup as possible.
+  * [x] The [_MapView_](/apps/uber/client/components/map.jsx) component should be implemented.
+  * [x] The [_NavBar_](/apps/uber/client/components/navbar.jsx) component should be implemented.
+  * [x] The [_User_](/apps/uber/client/components/user.jsx) component should be implemented.  
+* [x] The admin page ([/apps/uber/admin/](/apps/uber/admin/)) should look as close to the mockup as possible.
+  * [x] The [_ProviderMap_](/apps/uber/admin/components/provider-map.jsx) component should be implemented.
+  * [x] The [_ProviderList_](/apps/uber/admin/components/provider-list.jsx) component should be implemented.  
+  * [x] The [_UserMap_](/apps/uber/admin/components/user-map.jsx) component should be implemented.      
+  * [x] The [_UserList_](/apps/uber/admin/components/user-list.jsx) component should be implemented.
 
 ### Worker
 
-* [ ] The script for simulating providers should be implemented (i.e.,
+* [x] The script for simulating providers should be implemented (i.e.,
   `workers/uber/simulate-providers.js`). Each provider should move around, rather
   than staying at the same location.
-* [ ] The worker should be deployed to Heroku.
+* [x] The worker should be deployed to Heroku.
 
 ## Heroku Hints
 

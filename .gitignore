@@ -39,5 +39,10 @@ build
 
 build
 
+# Images
+*.[jJ][pP][gG]
+*.[pP][nN][gG]
+
 src/apps/resume/images/
 src/apps/parking/images
+src/apps/uber/images
