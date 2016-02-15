@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Planevent</title>
+
+    <style>
+      strong {
+        color: #afb42b;
+      }
+      html {
+        background: url(images/plan2.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      } 
+    </style>
+  </head>  
+
+  <body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    
+    <header class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper lime darken-4">
+          <ul id="nav-mobile" class="left">
+            <li><a href="/">Home</a></li>
+          </ul>
+          <a href="index.html" class="brand-logo center">Planevent</a>
+          <ul id="nav-mobile" class="right">
+            <li><a href="index.html#about">About</a></li>
+            <li class="active"><a href="sandbox.html">Collaborate</a></li>
+            <li><a href="admin.html">Admin</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <!-- Chatbox -->
+      <div class="row">
+        <div class="col s4">
+           <ul class="collection" style="opacity: 0.95">
+            <li class="collection-item avatar">
+              <img src="images/plan.jpg" alt="" class="circle">
+              <strong class="title">calebhsu</strong>
+              <p>Wait, so are we doing live music before the welcome or after? <br>
+              </p>
+            </li>
+            <li class="collection-item avatar">
+              <i class="material-icons circle lime darken-1">person</i>
+              <strong class="title">eatincheetos</strong>
+              <p>I was going to start while people were eating, since <br>
+                  it'll be hard to get everyone seated.
+              </p>
+            </li>
+            <li class="collection-item avatar">
+              <img src="images/plan2.jpg" alt="" class="circle">
+              <strong class="title">dergreg</strong>
+              <p>K I just moved the card down.
+              </p>
+            </li>
+            <li class="collection-item avatar">
+              <img src="images/sunflower.jpg" alt="" class="circle">
+              <strong class="title">v_deleon</strong>
+              <p>Do you think we should have ushers or let everyone<br>
+                  seat themselves?
+              </p>
+            </li>
+            <li class="collection-item avatar">
+              <i class="material-icons circle lime darken-2">person</i>
+              <strong class="title">e_rob</strong>
+              <p>I don't think we have time to coordinate that...</p>
+            </li>
+          </ul>
+
+          <form class="col s12 white center-align" style="opacity: 0.95">
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                <label for="icon_prefix2">Write your message here</label>
+                <a class="waves-effect btn lime darken-3"><i class="material-icons right">send</i>Post</a>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sandbox -->
+        <div class="card col s8" style="opacity: 0.95">
+          <!-- Title -->
+          <div class="card">
+              <div class="input-field card-content">
+                  <input placeholder="Event Title" type="text" class="validate">
+              </div>
+          </div>
+
+          <!-- Cards -->
+          <div class="col s12">
+            <div class="card blue-grey lighten-4">
+              <div class="card-content">
+                <span class="card-title">Introduction</span>
+                <p> People seat themselves <br>
+                    Emcees: begin introduction
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two Col -->
+          <div class="row">
+            <div class="col s6">
+              <div class="card blue-grey lighten-4">
+                <div class="card-content">
+                  <span class="card-title">Serve Food</span>
+                  <p> Emcees: dismiss by table <br>
+                      Servers: don't give peeps too much pasta or we'll run out
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col s6">
+              <div class="card blue-grey lighten-4">
+                <div class="card-content">
+                  <span class="card-title">Start Music</span>
+                  <p> Musicians: piano or sax.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- More Cards -->
+          <div class="col s12">
+            <div class="card blue-grey lighten-4">
+              <div class="card-content">
+                <span class="card-title">Eat</span>
+                <p> Emcees: give everyone 45 minutes to eat before introducing the speakers
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col s12">
+            <div class="card blue-grey lighten-4">
+              <div class="card-content">
+                <span class="card-title">Speakers</span>
+                <p> Should take 10 minutes </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Submission Form -->
+          <a class="btn-floating btn-large waves-effect modal-trigger lime darken-3 right" href="#addstuff" style="bottom: 35px; right: 24px;">
+            <i class="material-icons">add</i>
+          </a>
+
+          <div id="addstuff" class="modal bottom-sheet">
+            <div class="modal-content">
+              <h4>Create a New Event Component</h4>
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input placeholder="Closing" type="text">
+                    <label>Title</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="Emcees: closing remarks." type="text">
+                    <label>Description</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+            </div>
+          </div>
+        </div> <!-- End of Sandbox -->
+      </div> <!-- End of Row -->
+    </div> <!-- End of Container -->
+  </body>
+
+  <script>
+   $(document).ready(function(){
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+    });
+  </script>
+
+</html>

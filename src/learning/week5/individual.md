@@ -19,12 +19,19 @@ create, play, build, fix, help, control ... etc
 
 * What is the name of your app?
 * What collaborative activity can people do together using your app?
+	* Event planning
 * What is the ideal number of concurrent users (must be at least 10 but no more than 40)?
+	* 15 users seems like a good number
 * What skills do people need in order to do this activity?
+	* None -- hopefully they can apply themselves and not get distracted with small details.
 * Is this activity for fun or for something practical?
+	* Event planning is mostly practical, but can be entertaining as well...if you like your collaborators.
 * How can a person see what everyone else is doing?
+	* Users communicate through a chatbox and realtime event component updates
 * How can a person see the most recent result of everyone's collaborative effort?
+	* A main "sandbox" page where users rearrange and add event components
 * What can an admin see (i.e., God's mode)?
+	* Current users, online/offline states, most recent changes made.
 
 ## Mockup
 
@@ -33,7 +40,7 @@ number of pages you think is necessary to illustrate your idea.
 
 ## Submission
 
-* Deploy to Firebase. Your mockups should be publicly visible via `<Your Firbase>`[/apps/together/mockup/](/apps/together/mockup/index.html)
+* Deploy to Firebase. Your mockups should be publicly visible via `<Your Firebase>`[/apps/together/mockup/](/apps/together/mockup/index.html)
 * The answers to your ideation questions must be included in the mockup's
 index page.
 * Use [http://recordit.co/](http://recordit.co/) to create a demo as an animated

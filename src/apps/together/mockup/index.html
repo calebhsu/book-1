@@ -1,4 +1,123 @@
-TODO:
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<div>Links to the pages of your app's mockup</div>
-<div>Writeup of your ideation</div>
+    <title>Planevent</title>
+
+    <style>
+      strong {
+        color: #6c6313;
+      }
+    </style>
+  </head>  
+
+  <body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    
+    <header class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper lime darken-4">
+          <ul id="nav-mobile" class="left">
+            <li><a href="/">Home</a></li>
+          </ul>
+          <a href="index.html" class="brand-logo center">Planevent</a>
+          <ul id="nav-mobile" class="right">
+            <li><a href="#about">About</a></li>
+            <li><a href="sandbox.html">Collaborate</a></li>
+            <li><a href="admin.html">Admin</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div class="parallax-container">
+      <div class="parallax"><img src="images/plan.jpg"></div>
+    </div>
+
+    <div class="section white" id="about">
+      <div class="row container center">
+        <h3> Planning an Event? </h3>
+        <p>Planevent is a realtime <strong>collaboration tool for teams</strong> anywhere from two to forty people. <br> Users can quickly add, edit, and position event components to quickly <strong>create an event program in real time</strong>. </p>
+        <h1></h1>
+        <!-- Promo Content -->
+        <div class="col s4">
+          <div class="center">
+            <i class="medium material-icons lime-text">query_builder</i>
+            <h4>Real Time</h4>
+            <p class="light center">Chat with collaborators and arrange event components in real time.</p>
+          </div>
+        </div>
+        <div class="col s4">
+          <div class="center">
+            <i class="medium material-icons lime-text">supervisor_account</i>
+            <h4>Collaborative</h4>
+            <p class="light center">Work with dynamic teams of any size. As long as you're all online, you can share ideas with groups of up to 40 people.</p>
+          </div>
+        </div>
+        <div class="col s4">
+          <div class="center">
+            <i class="medium material-icons lime-text">web</i>
+            <h4>Visual</h4>
+            <p class="light center">Watch your program structure change as fresh ideas are added.</p>
+          </div>
+        </div>
+      </div>      
+    </div>
+
+    <div class="parallax-container">
+      <div class="parallax"><img src="images/plan2.jpg"></div>
+    </div>
+
+    <div class="section lime darken-3" id="faq">
+      <div class="row container center white-text">
+        <h3>Frequently Asked Questions</h3>
+        <ul class="collapsible popout" data-collapsible="accordion">
+          <li class="lime lighten-5 black-text">
+            <div class="collapsible-header lime lighten-4 black-text"><i class="material-icons">info_outline</i>What collaborative activity can people do together using your app?</div>
+            <div class="collapsible-body"><p>Planevent allows people to collaborate on event planning.</p></div>
+          </li>
+          <li class="lime lighten-5 black-text">
+            <div class="collapsible-header lime lighten-4 black-text"><i class="material-icons">supervisor_account</i>What is the ideal number of concurrent users?</div>
+            <div class="collapsible-body"><p>We recommend anywhere from two to twenty users.</p></div>
+          </li>
+          <li class="lime lighten-5 black-text">
+            <div class="collapsible-header lime lighten-4 black-text"><i class="material-icons">stars</i>What skills do people need in order to do this activity?</div>
+            <div class="collapsible-body"><p>No skills necessary, except a passion for event planning! And a desire to get along with your teammates.</p></div>
+          </li>
+          <li class="lime lighten-5 black-text">
+            <div class="collapsible-header lime lighten-4 black-text"><i class="material-icons">thumb_up</i>Is this activity for fun or for something practical?</div>
+            <div class="collapsible-body"><p>Event planning is mostly practical, but can be entertaining as well…if you like your collaborators.</p></div>
+          </li>
+          <li class="lime lighten-5 black-text">
+            <div class="collapsible-header lime lighten-4 black-text"><i class="material-icons">visibility</i>How can a person see what everyone else is doing?</div>
+            <div class="collapsible-body"><p>Users communicate through a chatbox and realtime event component updates.</p></div>
+          </li>
+          <li class="lime lighten-5 black-text">
+            <div class="collapsible-header lime lighten-4 black-text"><i class="material-icons">launch</i>How can a person see the most recent result of everyone’s collaborative effort?</div>
+            <div class="collapsible-body"><p>Users work on a main “sandbox” page where users rearrange and add event components.</p></div>
+          </li>
+          <li class="lime lighten-5 black-text">
+            <div class="collapsible-header lime lighten-4 black-text"><i class="material-icons">lock_outline</i>What can an admin see?</div>
+            <div class="collapsible-body"><p>Admins can see current users for each project, online/offline states, and most recent changes made.</p></div>
+          </li> 
+        </ul>
+      </div>      
+    </div>
+    
+  </body>
+
+  <script>
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+  </script>
+</html>
