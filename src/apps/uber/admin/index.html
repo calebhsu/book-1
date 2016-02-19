@@ -35,6 +35,16 @@
       }
     </style>
 
+    <style>
+      html {
+        background: url(images/food.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    </style>
+
   </head>
   <body>
     <nav>
@@ -46,11 +56,7 @@
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right">
           <li><a href="/apps/uber/client">Clients</a></li>
-          <li class="active"><a href="admin.html">Admins</a></li>
-        </ul>
-          <ul class="side-nav" id="mobile-demo">
-            <li><a href="client/">Clients</a></li>
-            <li><a href="admin/">Admins</a></li>
+          <li class="active"><a href="/apps/uber/admin">Admins</a></li>
         </ul>
       </div>
     </nav>
@@ -69,12 +75,17 @@
     <script type="text/babel" src="components/user-map.jsx"></script>
     <script type="text/babel" src="components/provider-list.jsx"></script>
     <script type="text/babel" src="components/provider-map.jsx"></script>
+    <script type="text/babel" src="components/footer.jsx"></script>
+
 
     <!-- Main app container -->
     <script type="text/babel" src="components/app.jsx"></script>
 
     <!-- Connect the app and data -->
     <script type="text/babel" src="data.jsx"></script>
+
+    <div id="footer"></div>
+
 
   </body>
 </html>

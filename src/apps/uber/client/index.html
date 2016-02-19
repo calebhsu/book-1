@@ -34,6 +34,16 @@
       }
     </style>
 
+    <style>
+      html {
+        background: url(images/food.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    </style>
+
   </head>
   <body>
 
@@ -55,12 +65,16 @@
     <script type="text/babel" src="components/navbar.jsx"></script>
     <script type="text/babel" src="components/map.jsx"></script>
     <script type="text/babel" src="components/RestList.jsx"></script>
+    <script type="text/babel" src="components/footer.jsx"></script>
 
     <script type="text/babel" src="components/user.jsx"></script>
     <script type="text/babel" src="components/rList.jsx"></script>
 
+
     <!-- Main app container -->
     <script type="text/babel" src="components/app.jsx"></script>
+
+
 
     <!-- Connect the app and data -->
     <script type="text/babel" src="data.jsx"></script>
@@ -73,6 +87,9 @@
          <div id="mapview" style="height:500px"></div>
 
      </div>
+
+
+    <div id="footer"></div>
 
 
   </body>

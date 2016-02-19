@@ -3,11 +3,11 @@ const {Map, Marker, CircleMarker, Popup, TileLayer, MapLayer}  = window.ReactLea
 class MapView extends React.Component {
   render(){
 
-    const providers = this.props.providers
-    const restaurants = this.props.restaurants
+    const providers = this.props.providers;
+    const restaurants = this.props.restaurants;
 
     const providerElements = _.map(providers, function(p,i){
-      
+
       var pos = [p.lat, p.lon];
 
       var provider_icon = L.icon({
@@ -19,15 +19,15 @@ class MapView extends React.Component {
 
       return <Marker position={pos} key={i} icon={provider_icon}>
         <Popup>
-          <span><b> {p.name}</b></span>
+          <span><font color="black"><b> {p.name}</b></font></span>
         </Popup>
       </Marker>
     })
 
 
-   const restaurantsElements = _.map(restaurants, function(p,i){
-      
-      var pos = [p.lat, p.lon];
+   const restaurantsElements = _.map(restaurants, function(r,i){
+
+      var pos = [r.lat, r.lon];
 
       var restaurant_icon = L.icon({
       iconUrl: 'images/restaurantIcon.png',
@@ -38,21 +38,17 @@ class MapView extends React.Component {
 
       return <Marker position={pos} key={i} icon={restaurant_icon}>
         <Popup>
-          <span><b> {p.name}</b></span>
+          <span><font color="black"> <b> {r.name}</b></font></span>
         </Popup>
       </Marker>
     })
 
 
-
-
-
-
-    let userElement
+    let userElement;
     if (this.props.user){
-      userElement = <CircleMarker center={this.props.user.pos}/>
+      userElement = <CircleMarker radius={15} center={this.props.user.pos}/>;
     } else {
-      userElement = ''
+      userElement = '';
     }
 
     // Note: .bind(this) is important for the handler function's 'this'
@@ -65,8 +61,8 @@ class MapView extends React.Component {
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {providerElements}
         {restaurantsElements}
+        {providerElements}
         {userElement}
       </Map>
   }
