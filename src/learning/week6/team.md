@@ -15,7 +15,7 @@ Friday @ 11:59pm, 2/19/2016
 
 ## Requirements
 
-* [ ] Submit a short writeup to summarize what items on your plan are executed
+* [x] Submit a short writeup to summarize what items on your plan are executed
 and what other things your team has done that deviates from your original plan.
 
 ## Submission

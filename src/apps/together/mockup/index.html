@@ -7,13 +7,20 @@
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 
     <title>Planevent</title>
 
     <style>
-      strong {
-        color: #6c6313;
+      html { 
+        background: url(images/plan.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      h4, h5 {
+        padding-top: 2%;
       }
     </style>
   </head>  
@@ -22,64 +29,53 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     
-    <header class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper lime darken-4">
-          <ul id="nav-mobile" class="left">
-            <li><a href="/">Home</a></li>
-          </ul>
-          <a href="index.html" class="brand-logo center">Planevent</a>
-          <ul id="nav-mobile" class="right">
-            <li><a href="#about">About</a></li>
-            <li><a href="sandbox.html">Collaborate</a></li>
-            <li><a href="admin.html">Admin</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+    <nav class="navbar-fixed">
+      <div class="nav-wrapper lime darken-4">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a href="/"><i class="material-icons">home</i></a></li>
+        </ul>
+        <a href="index.html" class="brand-logo center">Planevent</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#about">About</a></li>
+          <li><a href="sandbox.html">Collaborate</a></li>
+          <li><a href="admin.html">Admin</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </nav>
 
-    <div class="parallax-container">
-      <div class="parallax"><img src="images/plan.jpg"></div>
-    </div>
-
-    <div class="section white" id="about">
-      <div class="row container center">
-        <h3> Planning an Event? </h3>
-        <p>Planevent is a realtime <strong>collaboration tool for teams</strong> anywhere from two to forty people. <br> Users can quickly add, edit, and position event components to quickly <strong>create an event program in real time</strong>. </p>
-        <h1></h1>
-        <!-- Promo Content -->
-        <div class="col s4">
-          <div class="center">
-            <i class="medium material-icons lime-text">query_builder</i>
-            <h4>Real Time</h4>
-            <p class="light center">Chat with collaborators and arrange event components in real time.</p>
+    <div class="container" style="opacity: 0.95">
+      <div class="white" id="about">
+        <div class="row center">
+          <h4> Planning an Event? </h4>
+          <p>Planevent is a realtime <strong>collaboration tool for teams</strong> anywhere from two to forty people. <br> Users can quickly add & position event components to quickly <strong>create an event program in real time</strong>. </p>
+          <!-- Promo Content -->
+          <div class="col s4">
+            <div class="center">
+              <i class="medium material-icons lime-text">query_builder</i>
+              <h5>Real Time</h5>
+              <p class="light center">Chat with collaborators and arrange event components in real time.</p>
+            </div>
           </div>
-        </div>
-        <div class="col s4">
-          <div class="center">
-            <i class="medium material-icons lime-text">supervisor_account</i>
-            <h4>Collaborative</h4>
-            <p class="light center">Work with dynamic teams of any size. As long as you're all online, you can share ideas with groups of up to 40 people.</p>
+          <div class="col s4">
+            <div class="center">
+              <i class="medium material-icons lime-text">supervisor_account</i>
+              <h5>Collaborative</h5>
+              <p class="light center">Work with dynamic teams of any size, sharing ideas with groups of up to 40 people.</p>
+            </div>
           </div>
-        </div>
-        <div class="col s4">
-          <div class="center">
-            <i class="medium material-icons lime-text">web</i>
-            <h4>Visual</h4>
-            <p class="light center">Watch your program structure change as fresh ideas are added.</p>
+          <div class="col s4">
+            <div class="center">
+              <i class="medium material-icons lime-text">web</i>
+              <h5>Visual</h5>
+              <p class="light center">Watch your program structure change as fresh ideas are added.</p>
+            </div>
           </div>
-        </div>
-      </div>      
-    </div>
+        </div>      
+      </div>
 
-    <div class="parallax-container">
-      <div class="parallax"><img src="images/plan2.jpg"></div>
-    </div>
-
-    <div class="section lime darken-3" id="faq">
-      <div class="row container center white-text">
-        <h3>Frequently Asked Questions</h3>
+      <div class="row lime center-align darken-3 white-text" id="faq">
+        <h5>Frequently Asked Questions</h5>
         <ul class="collapsible popout" data-collapsible="accordion">
           <li class="lime lighten-5 black-text">
             <div class="collapsible-header lime lighten-4 black-text"><i class="material-icons">info_outline</i>What collaborative activity can people do together using your app?</div>
