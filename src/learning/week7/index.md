@@ -24,8 +24,8 @@ behind a bit, please start early. Don't wait until the weekend.
 ## Requirements
 
 * Team
-  * [ ] Form a team of FOUR
-  * [ ] Write a proposal of a together app that integrates ideas from every team
+  * [x] Form a team of FOUR
+  * [x] Write a proposal of a together app that integrates ideas from every team
   member
 
 * Individual
