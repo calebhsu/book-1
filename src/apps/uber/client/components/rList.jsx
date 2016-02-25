@@ -3,7 +3,7 @@ class RestaurantList extends React.Component {
   	var restaurants = this.props.restaurants.map(function(r, i){
 
       return <li key={i} className="collection-item avatar">
-          <img src={"images/"+r.name+".jpg"} alt="" className="circle"/>
+          <img src={"images/"+ r.name + ".jpg"} alt="" className="circle"/>
 
           <span className="title"><b>{r.name}</b></span>
           <p><b>Address: </b>{r.address}</p>

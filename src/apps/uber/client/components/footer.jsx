@@ -22,7 +22,7 @@ class Footer extends React.Component {
 
                 <div className="col s4">
                     <h5 className="white-text">Be A Business Partner</h5>
-                    <p className="grey-text text-lighten-4">Join Hungry Asian App and be a partner to extend your restaurant business. We have a Gitter chat room set up where you can talk about busniess directly with us.</p>
+                    <p className="grey-text text-lighten-4">Join Hungry Asians App and be a partner to extend your restaurant business. We have a Gitter chat room set up where you can talk about busniess directly with us.</p>
                     <a className="orange waves-effect waves-light btn" target="_blank" href="https://gitter.im/sophyzhou/HungryAsianBusiness">Chat</a>
                 </div>
 
