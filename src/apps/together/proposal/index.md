@@ -15,7 +15,7 @@ the integration of creative ideas from every team member.
 
 * What is the name of your app?
 
-TBD (We Have No Idea)
+Prolanner
 
 * What collaborative activity can people do together using your app?
 
