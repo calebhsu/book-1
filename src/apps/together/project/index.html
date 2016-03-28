@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Project Name</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=La+Belle+Aurore|Lato|Montserrat|Open+Sans|Josefin+Sans' rel='stylesheet' type='text/css'>
+
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+    <!-- Firebase Stuff -->
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+
+    <!-- React & JQuery Stuff -->
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/chatroom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <style>
+      .secondary-content:hover {
+        color: #1D433F;
+        -o-transition:.8s;
+        -ms-transition:.8s;
+        -moz-transition:.8s;
+        -webkit-transition:.8s;
+        /* ...and now for the proper property */
+        transition:.8s;
+      }
+      br {
+        content: "A" !important;
+        display: block !important;
+        margin-bottom: 1em !important;
+      }
+      .chip {
+        margin: 0 0.65rem 0.6rem;
+      }
+      .collapsible-body p {
+        padding: 1.2rem 1.5rem;
+      }
+      html { 
+        background: url(img/plan1.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      h5 {
+        font-family: 'Open Sans', 'Josefin Sans', 'Lato', sans-serif;
+        font-size: 1.4em;
+      }
+      nav {
+        font-family: 'Josefin Sans', 'Lato', sans-serif;
+      }
+      nav ul {
+        font-weight: 600;
+      }
+      .move {
+        margin: 0.2rem 0.5rem 0 0;
+      }
+      #logo {
+        font-family: 'La Belle Aurore';
+        font-size: 3em;
+        margin: 0.25em auto;
+      }
+
+    </style>
+
+</head>
+
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+
+  <script>
+    // MyComponents is a global object where each property is a reference to a component class
+    MyComponents = {}
+  </script>
+
+  <!-- Import Your Components Below -->
+  <script type="text/babel" src="components/navbar.jsx"></script>
+  <script type="text/babel" src="components/newtask.jsx"></script>
+  <script type="text/babel" src="components/newevent.jsx"></script>
+  <script type="text/babel" src="components/tasklist.jsx"></script>
+  
+  <script type="text/babel" src="components/eventlist.jsx"></script>
+  <script type="text/babel" src="components/chatroom.jsx"></script>
+  <script type="text/babel" src="components/app.jsx"></script>
+
+  <script type="text/babel" src="data.jsx"></script>
+  <script type="text/babel" src="data_tasks.jsx"></script>
+
+  <script type="text/babel" src="js/chatroom.js"></script>
+
+  <script>
+    (function(){
+        var searchFilter = {
+          options: { valueNames: ['name'] },
+          init: function() {
+            var userList = new List('people-list', this.options);
+            var noItems = $('<li id="no-items-found">No items found</li>');
+
+            userList.on('updated', function(list) {
+              if (list.matchingItems.length === 0) {
+                $(list.list).append(noItems);
+                console.log(noItems)
+              } else {
+                noItems.detach();
+                console.log(list.matchingItems)
+              }
+            });
+          }
+        };
+
+        searchFilter.init();
+
+    })();
+
+    $('#delete_event').click(function(){
+          $eventItem.hide();
+        });
+  </script>
+
+  <script type="text/babel">
+    ReactDOM.render(
+      <MyComponents.NavBar/>,
+      $('#navbar').get(0)
+    );
+    ReactDOM.render(
+      <MyComponents.NewTask/>,
+      $('#new-task').get(0)
+    );
+    ReactDOM.render(
+      <MyComponents.NewEvent/>,
+      $('#new-event').get(0)
+    );
+  </script>
+
+  <!-- Component Divs -->
+  <div id="navbar"></div>
+  <div class="row">
+    <h1></h1>
+    <div class="col s6">
+      <div id="new-task"></div>
+      <div id="tasklist"></div>
+      <div id="new-event"></div>
+      <div id="eventlist"></div>
+    </div>
+    
+    <div class="col s6" id="chat"></div>
+  </div>
+</body>
+</html>
