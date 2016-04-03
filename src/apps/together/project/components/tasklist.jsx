@@ -26,7 +26,7 @@ MyComponents.todo = React.createClass({
       <li>
         <div className="collapsible-header cyan darken-1">{this.props.task.taskName}</div>
         <div className="collapsible-body black-text">
-          <a onClick={this.handleClick}><i  className="material-icons secondary-content move" >arrow forward</i></a>
+          <a onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_forward</i></a>
           <p><i>{this.props.task.taskDescription}</i> <br/>
           <b>Priority</b>: {priority}<br/>
           <b>Deadline</b>: {this.props.task.deadline}</p>
@@ -65,7 +65,7 @@ MyComponents.doing = React.createClass({
       <li>
         <div className="collapsible-header cyan darken-3">{this.props.task.taskName}</div>
         <div className="collapsible-body black-text">
-          <a onClick={this.handleClick}><i className="material-icons secondary-content move" >arrow forward</i></a>
+          <a onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_forward</i></a>
           <p><i>{this.props.task.taskDescription}</i><br/>
           <b>Priority</b>: {priority}<br/>
           <b>Deadline</b>: {this.props.task.deadline}</p>
@@ -80,6 +80,14 @@ MyComponents.doing = React.createClass({
 });
 
 MyComponents.done = React.createClass({
+  handleClick: function(event) {
+    var prolannerRef = new Firebase('https://prolanner.firebaseio.com')
+    var projectID = window.location.hash.substring(1);
+    var key = this.props.task.key
+    var taskRef = prolannerRef.child('tasks').child(projectID).child(key)
+
+    taskRef = taskRef.update({taskStatus: 1})
+  },
   render(){
     var priority;
     if (this.props.task.priority == 0) {
@@ -96,6 +104,7 @@ MyComponents.done = React.createClass({
       <li>
         <div className="collapsible-header blue-grey lighten-2">{this.props.task.taskName}</div>
         <div className="collapsible-body black-text">
+          <a onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_back</i></a>
           <p><i>{this.props.task.taskDescription}</i><br/>
           <b>Priority</b>: {priority}<br/>
           <b>Deadline</b>: {this.props.task.deadline}</p>
