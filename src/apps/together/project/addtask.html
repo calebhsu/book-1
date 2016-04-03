@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Add a Task</title>
+    <title>Home</title>
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -111,22 +111,23 @@
         </div>
 
         <div class="row">
-          <div class="input-field col s12">
+          <div class="input-field col s2">
             <a id="changeName" class='dropdown-button btn' href='#' data-activates='dropdown1'>Assign To</a>
-
             <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content'>
               
             </ul>
-            <div id="name"></div>
-            <div id="githubID"></div>
-            
-            
           </div>
+
+          <div class="input-field col s9" id="name">
+            <input disabled id="assignedTo" type="text" class="validate">
+            <label for="assignedTo" id="assignedTo"></label>
+          </div>
+
         </div>
 
         <div class="row">
-          <div class="col s12">
+          <div class="col s6">
             <label for="deadline">Due</label>
             <input type="date" id="deadline" class="datepicker">
           </div>
@@ -153,7 +154,6 @@
     $('select').material_select();
   });
 
-  console.log("Inside script")
   var projRef = new Firebase('https://prolanner.firebaseio.com').child("projects").child(window.location.hash.substring(1)).child("projectMetaData")
 
   projRef.once('value', function(snapshot){
@@ -162,14 +162,13 @@
     for(var i in projMem) {
       var userRef = new Firebase('https://prolanner.firebaseio.com').child("users").child(projMem[i])
       userRef.on('value', function(sn) {
-        $('#dropdown1').append('<li onclick="assig(\''+projMem[i]+'\','+'\''+sn.child("userName").val()+'\''+')">'+sn.child("userName").val()+'</li>')
+        $('#dropdown1').append('<li onclick="assig(&#39;' + sn.child("userName").val() +'&#39;)">'+sn.child("userName").val()+'</li>')
         })
     }
   })
   
-  function assig(id, name) {
-    $('#name').append(name)
-    $('#githubID').append(id)
+  function assig(name) {
+    $("label#assignedTo").html(name)
   }
   </script>
 
