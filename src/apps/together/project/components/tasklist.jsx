@@ -10,6 +10,14 @@ MyComponents.todo = React.createClass({
 
     taskRef = taskRef.update({taskStatus: 1})
   },
+  deleteClick: function(event) {
+    var prolannerRef = new Firebase('https://prolanner.firebaseio.com')
+    var projectID = window.location.hash.substring(1);
+    var key = this.props.task.key
+    var taskRef = prolannerRef.child('tasks').child(projectID).child(key)
+
+    taskRef = taskRef.remove();
+  },
   render(){
     var priority;
     if (this.props.task.priority == 0) {
@@ -26,11 +34,14 @@ MyComponents.todo = React.createClass({
       <li>
         <div className="collapsible-header cyan darken-1">{this.props.task.taskName}</div>
         <div className="collapsible-body black-text">
-          <a onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_forward</i></a>
           <p><i>{this.props.task.taskDescription}</i> <br/>
           <b>Priority</b>: {priority}<br/>
           <b>Deadline</b>: {this.props.task.deadline}</p>
-          <div className="chip orange white-text">{this.props.task.assignedTo}</div>
+          <div className="row">
+            <div className="chip orange white-text">{this.props.task.assignedTo}</div>
+            <a className="btn-floating btn-flat waves-effect red" onClick={this.deleteClick}><i className="material-icons secondary-content delete">delete</i></a>
+            <a className="btn-floating btn-flat waves-effect light-green darken-1" onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_forward</i></a>
+          </div>
         </div>
       </li>
     );
@@ -49,6 +60,14 @@ MyComponents.doing = React.createClass({
 
     taskRef = taskRef.update({taskStatus: 2})
   },
+  deleteClick: function(event) {
+    var prolannerRef = new Firebase('https://prolanner.firebaseio.com')
+    var projectID = window.location.hash.substring(1);
+    var key = this.props.task.key
+    var taskRef = prolannerRef.child('tasks').child(projectID).child(key)
+
+    taskRef = taskRef.remove();
+  },
   render(){
     var priority;
     if (this.props.task.priority == 0) {
@@ -65,11 +84,14 @@ MyComponents.doing = React.createClass({
       <li>
         <div className="collapsible-header cyan darken-3">{this.props.task.taskName}</div>
         <div className="collapsible-body black-text">
-          <a onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_forward</i></a>
           <p><i>{this.props.task.taskDescription}</i><br/>
           <b>Priority</b>: {priority}<br/>
           <b>Deadline</b>: {this.props.task.deadline}</p>
-          <div className="chip orange white-text">{this.props.task.assignedTo}</div>
+          <div className="row">
+            <div className="chip orange white-text">{this.props.task.assignedTo}</div>
+            <a className="btn-floating btn-flat waves-effect red" onClick={this.deleteClick}><i className="material-icons secondary-content delete">delete</i></a>
+            <a className="btn-floating btn-flat waves-effect light-green darken-1" onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_forward</i></a>
+          </div>
         </div>
       </li>
     );
@@ -87,6 +109,14 @@ MyComponents.done = React.createClass({
     var taskRef = prolannerRef.child('tasks').child(projectID).child(key)
 
     taskRef = taskRef.update({taskStatus: 1})
+  },
+  deleteClick: function(event) {
+    var prolannerRef = new Firebase('https://prolanner.firebaseio.com')
+    var projectID = window.location.hash.substring(1);
+    var key = this.props.task.key
+    var taskRef = prolannerRef.child('tasks').child(projectID).child(key)
+
+    taskRef = taskRef.remove();
   },
   render(){
     var priority;
@@ -108,7 +138,11 @@ MyComponents.done = React.createClass({
           <p><i>{this.props.task.taskDescription}</i><br/>
           <b>Priority</b>: {priority}<br/>
           <b>Deadline</b>: {this.props.task.deadline}</p>
-          <div className="chip orange white-text">{this.props.task.assignedTo}</div>
+          <div className="row">
+            <div className="chip orange white-text">{this.props.task.assignedTo}</div>
+            <a className="btn-floating btn-flat waves-effect red" onClick={this.deleteClick}><i className="material-icons secondary-content delete">delete</i></a>
+            <a className="btn-floating btn-flat waves-effect light-green darken-1" onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_forward</i></a>
+          </div>
         </div>
       </li>
     );

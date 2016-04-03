@@ -118,9 +118,9 @@
             </ul>
           </div>
 
-          <div class="input-field col s9" id="name">
+          <div class="input-field col s9">
             <input disabled id="assignedTo" type="text" class="validate">
-            <label for="assignedTo" id="assignedTo"></label>
+            <label for="assignedTo" id="name"></label>
           </div>
 
         </div>
@@ -161,13 +161,13 @@
     for(var i in projMem) {
       var userRef = new Firebase('https://prolanner.firebaseio.com').child("users").child(projMem[i])
       userRef.on('value', function(sn) {
-        $('#dropdown1').append('<li onclick="assig(&#39;' + sn.child("userName").val() +'&#39;)"><a href="#!">'+sn.child("userName").val()+'</a></li>')
+        $('#dropdown1').append('<li onclick="assig(&#39;' + sn.child("userName").val() +'&#39;)"><a>'+sn.child("userName").val()+'</a></li>')
         })
     }
   })
   
   function assig(name) {
-    $("label#assignedTo").html(name)
+    $("label#name").html(name)
   }
   </script>
 
