@@ -115,7 +115,6 @@
             <a id="changeName" class='dropdown-button btn' href='#' data-activates='dropdown1'>Assign To</a>
             <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content'>
-              
             </ul>
           </div>
 
@@ -162,7 +161,7 @@
     for(var i in projMem) {
       var userRef = new Firebase('https://prolanner.firebaseio.com').child("users").child(projMem[i])
       userRef.on('value', function(sn) {
-        $('#dropdown1').append('<li onclick="assig(&#39;' + sn.child("userName").val() +'&#39;)">'+sn.child("userName").val()+'</li>')
+        $('#dropdown1').append('<li onclick="assig(&#39;' + sn.child("userName").val() +'&#39;)"><a href="#!">'+sn.child("userName").val()+'</a></li>')
         })
     }
   })
