@@ -41,11 +41,11 @@ If you only put in some minor, cosmetic changes, mark _trivial_.
 
 By __Monday @ 3pm, 4/4/2016__
 
-* [ ] Post a public message to [#book](https://ucdd2016.slack.com/messages/book/).
+* [x] Post a public message to [#book](https://ucdd2016.slack.com/messages/book/).
 The message should contain a link to your own enhanced version of your team's
 together app, and a one-paragraph description of your enhancement.
 
-* [ ] Post a private message to the grader, using the following template:
+* [x] Post a private message to the grader, using the following template:
 
 ```
 The total points I believe I deserve is: {{? / 10 points}}.
