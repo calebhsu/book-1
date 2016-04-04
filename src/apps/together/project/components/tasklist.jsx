@@ -19,6 +19,7 @@ MyComponents.todo = React.createClass({
     taskRef = taskRef.remove();
   },
   render(){
+    // handles priority naming
     var priority;
     if (this.props.task.priority == 0) {
       priority = "High"
@@ -30,6 +31,9 @@ MyComponents.todo = React.createClass({
       priority = "Low"
     }
 
+    // github link redirect
+    var url = 'https://github.com/' + this.props.task.assignedTo
+
     if (this.props.task.taskStatus == 0) return (
       <li>
         <div className="collapsible-header cyan darken-1">{this.props.task.taskName}</div>
@@ -37,8 +41,8 @@ MyComponents.todo = React.createClass({
           <p><i>{this.props.task.taskDescription}</i> <br/>
           <b>Priority</b>: {priority}<br/>
           <b>Deadline</b>: {this.props.task.deadline}</p>
-          <div className="row">
-            <div className="chip orange white-text">{this.props.task.assignedTo}</div>
+          <div className="row center-align">
+            <a href={url} target="_blank"><div className="chip orange white-text">{this.props.task.assignedTo}</div></a>
             <a className="btn-floating btn-flat waves-effect red" onClick={this.deleteClick}><i className="material-icons secondary-content delete">delete</i></a>
             <a className="btn-floating btn-flat waves-effect light-green darken-1" onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_forward</i></a>
           </div>
@@ -80,6 +84,9 @@ MyComponents.doing = React.createClass({
       priority = "Low"
     }
 
+    // github link redirect
+    var url = 'https://github.com/' + this.props.task.assignedTo
+
     if (this.props.task.taskStatus == 1) return (
       <li>
         <div className="collapsible-header cyan darken-3">{this.props.task.taskName}</div>
@@ -87,8 +94,8 @@ MyComponents.doing = React.createClass({
           <p><i>{this.props.task.taskDescription}</i><br/>
           <b>Priority</b>: {priority}<br/>
           <b>Deadline</b>: {this.props.task.deadline}</p>
-          <div className="row">
-            <div className="chip orange white-text">{this.props.task.assignedTo}</div>
+          <div className="row center-align">
+            <a href={url} target="_blank"><div className="chip orange white-text">{this.props.task.assignedTo}</div></a>
             <a className="btn-floating btn-flat waves-effect red" onClick={this.deleteClick}><i className="material-icons secondary-content delete">delete</i></a>
             <a className="btn-floating btn-flat waves-effect light-green darken-1" onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_forward</i></a>
           </div>
@@ -130,18 +137,20 @@ MyComponents.done = React.createClass({
       priority = "Low"
     }
 
+    // github link redirect
+    var url = 'https://github.com/' + this.props.task.assignedTo
+
     if (this.props.task.taskStatus == 2) return (
       <li>
         <div className="collapsible-header blue-grey lighten-2">{this.props.task.taskName}</div>
         <div className="collapsible-body black-text">
-          <a onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_back</i></a>
           <p><i>{this.props.task.taskDescription}</i><br/>
           <b>Priority</b>: {priority}<br/>
           <b>Deadline</b>: {this.props.task.deadline}</p>
-          <div className="row">
-            <div className="chip orange white-text">{this.props.task.assignedTo}</div>
+          <div className="row center-align">
+            <a href={url} target="_blank"><div className="chip orange white-text">{this.props.task.assignedTo}</div></a>
             <a className="btn-floating btn-flat waves-effect red" onClick={this.deleteClick}><i className="material-icons secondary-content delete">delete</i></a>
-            <a className="btn-floating btn-flat waves-effect light-green darken-1" onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_forward</i></a>
+            <a className="btn-floating btn-flat waves-effect light-green darken-1" onClick={this.handleClick}><i className="material-icons secondary-content move">arrow_back</i></a>
           </div>
         </div>
       </li>
