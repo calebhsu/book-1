@@ -26,10 +26,10 @@ If you only put in some minor, cosmetic changes, mark _trivial_.
 
 * New React components __Max: 4 points__
     * [ ] Substantial: __4 points__
-    * [ ] Good: __3 points__
+    * [x] Good: __3 points__
     * [ ] Trivial: __2 points__
 * New user actions __Max: 4 points__
-    * [ ] Substantial: __4 points__
+    * [x] Substantial: __4 points__
     * [ ] Good: __3 points__
     * [ ] Trivial: __2 points__
 * New styling __Max: 2 points__

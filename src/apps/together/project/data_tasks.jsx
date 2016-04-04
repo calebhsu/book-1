@@ -2,7 +2,7 @@ var prolannerRef = new Firebase('https://prolanner.firebaseio.com')
 
 var data = {
     tasks: [],
-    events: []
+    events: [],
 };
 
 var projectID = window.location.hash.substring(1);
@@ -23,8 +23,15 @@ function render_events(){
   );
 }
 
-
-//
+function render_summary() {
+  ReactDOM.render(
+    <MyComponents.Summary
+      tasks={data.tasks}
+      events={data.events}
+      meta={data.meta}/>,
+    $('#summary').get(0)
+  );
+}
 
 // gets all task values for a given project ID
 prolannerRef.child('tasks').child(projectID).on('value', function(snap){
@@ -36,9 +43,8 @@ prolannerRef.child('tasks').child(projectID).on('value', function(snap){
     prolannerRef.child('tasks').child(projectID).child(taskID).on('value', function(sn){
       data.tasks.push(sn.val())
     })
-
+    
     render_tasks()
-
   })
 })
 
@@ -53,6 +59,11 @@ prolannerRef.child('events').child(projectID).on('value', function(snapshot){
     })
 
     render_events()
-
   })
+})
+
+prolannerRef.child('projects').child(projectID).on('value', function(snapshot) {
+  // adds project metadata to data.meta
+  data.meta = snapshot.val().projectMetaData
+  render_summary()
 })

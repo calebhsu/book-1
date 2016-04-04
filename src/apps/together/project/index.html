@@ -26,11 +26,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <style>
-
       br {
         content: "A" !important;
         display: block !important;
         margin-bottom: 1em !important;
+      }
+      .btn-floating {
+        margin: 0.5em;
+      }
+      h5 .btn-floating {
+        height: 30px;
+        width: 30px;
+      }
+      h5 .btn-floating i {
+        line-height: 30px;
       }
       .chip {
         margin: 0 0.65rem 0.6rem;
@@ -48,6 +57,12 @@
       h5 {
         font-family: 'Open Sans', 'Josefin Sans', 'Lato', sans-serif;
         font-size: 1.4em;
+        padding: 0 auto;
+      }
+      #logo {
+        font-family: 'La Belle Aurore';
+        font-size: 3em;
+        margin: 0.25em auto;
       }
       nav {
         font-family: 'Josefin Sans', 'Lato', sans-serif;
@@ -55,15 +70,13 @@
       nav ul {
         font-weight: 600;
       }
-      .btn-floating {
-        margin: 0.5em;
+      .sectiontitle {
+        background-color: rgba(0, 0, 0, 0.15);
+        padding: 0.5em 0;
       }
-      #logo {
-        font-family: 'La Belle Aurore';
-        font-size: 3em;
-        margin: 0.25em auto;
+      .add {
+        padding: 0 0;
       }
-
     </style>
 
 </head>
@@ -84,6 +97,7 @@
   <script type="text/babel" src="components/newtask.jsx"></script>
   <script type="text/babel" src="components/newevent.jsx"></script>
   <script type="text/babel" src="components/tasklist.jsx"></script>
+  <script type="text/babel" src="components/summary.jsx"></script>
   
   <script type="text/babel" src="components/eventlist.jsx"></script>
   <script type="text/babel" src="components/chatroom.jsx"></script>
@@ -144,14 +158,15 @@
   <div id="navbar"></div>
   <div class="row">
     <h1></h1>
-    <div class="col s6">
+    <div class="col s7">
+      <div id="summary"></div>
       <div id="new-task"></div>
       <div id="tasklist"></div>
       <div id="new-event"></div>
       <div id="eventlist"></div>
     </div>
     
-    <div class="col s6" id="chat"></div>
+    <div class="col s5" id="chat"></div>
   </div>
 
   <div class="row">
@@ -168,7 +183,6 @@
         $('#dropdown1').append('<li onclick="assig(\''+s.child("userID").val()+'\''+')"><a href="javascript:void(0);">'+s.child("userName").val()+'</a></li>')
       })
     })
-    
   </script>
 </body>
 </html>
