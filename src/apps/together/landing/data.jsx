@@ -40,24 +40,7 @@ var firebaseRef = new Firebase('https://prolanner.firebaseio.com')
 firebaseRef.on('value', function(snapshot){
    
     if(actions.logged) {
-      data.projects=[]
-      console.log(data.user.userID)
-      var userid = "github:"+data.user.userID
-      var userProjRef = firebaseRef.child("users").child(userid).child("projectIDs")
-      userProjRef.on('value', function(snapshot){
-        console.log(snapshot.val())
-        for(var i in snapshot.val()){
-          var projRef = firebaseRef.child("projects").child(snapshot.val()[i])
-          projRef.on('value',function(s){
-            data.projects.push(s.val())
-            render()
-          })
-        }
-      })
-    }
-
-
-      /*var projects = data.user.projectIDs
+      var projects = data.user.projectIDs
       data.projects=[]
       console.log("Projects inside actions.looged: ")
       console.log(projects)
@@ -74,7 +57,7 @@ firebaseRef.on('value', function(snapshot){
           console.log("Project is null")
         }
       }
-    }*/
+    }
 
     else {
       data.projects= _.values(snapshot.val().projects)
