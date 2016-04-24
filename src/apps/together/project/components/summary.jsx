@@ -7,7 +7,6 @@ class Summary extends React.Component {
 
     // task category counter
     this.props.tasks.forEach(function(t) {
-      console.log(t.taskStatus)
       if (t.taskStatus == 0) {
         doCount += 1;
       } 

@@ -16,7 +16,6 @@ var roomID;
 var messages={};
 
 prolannerRef.child('projects').child(projectID).child('projectMetaData').once('value', function(snapshot){
-    console.log("ProjectID:" + projectID)
     roomID =  snapshot.val().relatedChatRoom
     chatRef.child(roomID).child('roomMetaData').on("value", function(snapshot){
         chatRoomName = snapshot.val().roomName;
@@ -31,12 +30,10 @@ prolannerRef.child('projects').child(projectID).child('projectMetaData').once('v
                 render_chatroom();
             })
         });
-        console.log('get chatRoomName ' + chatRoomName);
         render_chatroom();
     });
     chatRef.child(roomID).child('roomMessages').on("value", function(snapshot){
         messages = snapshot.val();
-        //console.log(messages);
         render_chatroom();
         var element = document.getElementById("history");
         element.scrollTop = element.scrollHeight;
