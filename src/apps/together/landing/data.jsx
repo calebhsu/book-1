@@ -6,12 +6,10 @@ var data = {
 // a single 'handlers' object that holds all the actions of your entire app
 var actions;
 if (localStorage.getItem('prolanner::user') != null) {
-  //console.log(localStorage.getItem('prolanner::user') )
   actions = {
     logged: true
   };
   data.user = JSON.parse(localStorage.getItem('prolanner::user'))
-  //console.log(data.user)
 } else {
   actions = {
     logged: false
@@ -40,23 +38,18 @@ var firebaseRef = new Firebase('https://prolanner.firebaseio.com')
 firebaseRef.on('value', function(snapshot){
    
     if(actions.logged) {
-      var projects = data.user.projectIDs
       data.projects=[]
-      console.log("Projects inside actions.looged: ")
-      console.log(projects)
-      for (var i in projects) {
-        if(projects[i] && projects[i]!="undefined"){
-          console.log("not null")
-          var projRef = firebaseRef.child("projects").child(projects[i])
-          projRef.on('value',function(snapshot){
-            data.projects.push(snapshot.val())
+      var userid = "github:"+data.user.userID
+      var userProjRef = firebaseRef.child("users").child(userid).child("projectIDs")
+      userProjRef.on('value', function(snapshot){
+        for(var i in snapshot.val()){
+          var projRef = firebaseRef.child("projects").child(snapshot.val()[i])
+          projRef.on('value',function(s){
+            data.projects.push(s.val())
             render()
           })
         }
-        else {
-          console.log("Project is null")
-        }
-      }
+      })
     }
 
     else {
@@ -67,10 +60,8 @@ firebaseRef.on('value', function(snapshot){
 
 actions.login = function(){
 
-  console.log("Out")
   firebaseRef.authWithOAuthPopup("github", function(error, authData){
 
-    console.log("in")
     // handle the result of the authentication
     if (error) {
       console.log("Login Failed!", error);
@@ -92,7 +83,6 @@ actions.login = function(){
       var gid = "github:"+authData.github.id
 
       userRef.on('value', function(snapshot){
-        console.log("exists:"+snapshot.child(gid).exists())
         if(snapshot.child(gid).exists()==true) {
           isUserPresent = true
           var uref = firebaseRef.child("users").child(gid)
@@ -101,8 +91,6 @@ actions.login = function(){
             data.user = snapshot.val()
             localStorage.setItem('prolanner::user', JSON.stringify(data.user))
             var projects = _.values(snapshot.val().projectIDs)
-            console.log("Projects: ")
-            console.log(projects)
             data.projects=[]
             for (var i in projects) {
               if(projects[i] && projects[i]!="undefined") {
@@ -125,8 +113,6 @@ actions.login = function(){
             render()
           })
 
-          // set the user data
-          //uref.set(user)
         }
       })
     }
@@ -135,10 +121,8 @@ actions.login = function(){
 
 actions.logout = function(){
 
-  console.log("Outside logout")
   if (data.user){
 
-    console.log("Inside logout")
     actions.logged = false
     firebaseRef.unauth()
 
@@ -153,7 +137,6 @@ actions.logout = function(){
     // set the user's status to offline
     userRef.child('status').set('offline')
     localStorage.removeItem('prolanner::user')
-    console.log('delete prolanner')
 
     data.user = null
 
